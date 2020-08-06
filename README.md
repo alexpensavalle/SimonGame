@@ -1,2 +1,0 @@
-# SimonGame
-GA SimonGame Project
