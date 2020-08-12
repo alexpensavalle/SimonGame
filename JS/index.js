@@ -114,20 +114,27 @@ $("#mode").click(function () {
   }
 });
 
-$("#start").click(function () {
+/*$("#start").click(function () {
   console.log("Started");
   playerTurn();
-});
+});*/
 
+//Start Game:
 $(".menuButton").click(function () {
   if(rounds===0){
-    console.log("Started");
     playerTurn();
-  } 
-  
-  var el = document.querySelectorAll(".menuButton");
+    increaseNumFontSize();
+  }
+  else {
+    resetGame();
+    resetAnswers();
+  }      
+});
+
+
+var increaseNumFontSize = function () {
+ var el = document.querySelectorAll(".menuButton");
   for ( var i = 0; i < el.length; i ++ ) {
       el[i].style.fontSize = "120px";
   }
-        
-});
+}
