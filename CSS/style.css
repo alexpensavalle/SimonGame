@@ -1,0 +1,99 @@
+body{
+    background-color: black;
+    height: 100%;
+  }
+
+  html {
+    height: 100%;
+}
+  
+  #container {
+    /* width: 360px; */
+    /* height: 400px; */
+    /* margin: 0 auto; */
+    /* text-align: center; */
+    /* text-align: justify; */
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    height: 100%;
+  }
+  
+  .button{
+    margin: 1px;
+    height: auto;
+  }
+  
+  .button:hover {
+    cursor: pointer;
+  }
+  
+  #green {
+    background-color: green;
+    float: left;
+  }
+  
+  #red {
+    background-color: #ff1100;
+    display: inline-block;
+  }
+  
+  #yellow {
+    background-color: yellow;
+    clear: left;
+    float: left;
+  }
+  
+  #blue {
+    background-color: blue;
+    float: left;
+  }
+  
+  #green:active {
+    background-color: lightgreen;
+  }
+  
+  #red:active {
+    background-color: pink;
+  }
+  
+  #yellow:active {
+    background-color: lightyellow;
+  }
+  
+  #blue:active {
+    background-color: lightblue;
+  }
+  
+  
+  #mode:hover {
+    cursor: pointer;
+  }
+  
+  #start:hover {
+    cursor: pointer;
+  }
+  
+  #menu{
+    width: 370px;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 5px;
+  }
+  
+  .box {
+    margin: 0 auto;
+    width: 120px;
+    border: 1px solid white;
+    text-align: center;
+    color: white;
+    margin-top: 5px;
+    float: left; 
+  }
+  
+  
+  .box:active{
+    background-color: white;
+    color: black;  
+  }
+  
