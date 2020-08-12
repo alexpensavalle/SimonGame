@@ -33,6 +33,7 @@ var resetAnswers = function () {
 var updateRounds = function () {
   rounds++;
   $("#show-rounds").html(rounds);
+  $(".menuButton").html(rounds);
 };
 
 var resetGame = function () {
@@ -116,4 +117,17 @@ $("#mode").click(function () {
 $("#start").click(function () {
   console.log("Started");
   playerTurn();
+});
+
+$(".menuButton").click(function () {
+  if(rounds===0){
+    console.log("Started");
+    playerTurn();
+  } 
+  
+  var el = document.querySelectorAll(".menuButton");
+  for ( var i = 0; i < el.length; i ++ ) {
+      el[i].style.fontSize = "120px";
+  }
+        
 });
