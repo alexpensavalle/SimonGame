@@ -54,7 +54,6 @@ var playerTurn = function () {
 
   //winning condition
   if (rounds === 20) {
-    alert("You, you, you're good you!");
     resetGame();
   }
 

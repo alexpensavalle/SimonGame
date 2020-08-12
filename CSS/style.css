@@ -8,15 +8,27 @@ body{
 }
   
   #container {
-    /* width: 360px; */
-    /* height: 400px; */
-    /* margin: 0 auto; */
-    /* text-align: center; */
-    /* text-align: justify; */
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 50% 50%;
     height: 100%;
+  }
+
+  #menuContainer {
+    width:20%;
+    height:20%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:white;
+    z-index:1;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    border-radius: 30%
   }
   
   .button{
@@ -27,9 +39,22 @@ body{
   .button:hover {
     cursor: pointer;
   }
+
+  .menuButton{
+      margin:1px;
+      height: auto;
+      font-size: 40px;
+      text-align:center;
+      font-weight: bold;
+      font-family: sans-serif
+  }
+
+  .menuButton:hover {
+    cursor: pointer;
+  }
   
   #green {
-    background-color: green;
+    background-color: #2bff00;
     float: left;
   }
   
@@ -46,6 +71,11 @@ body{
   
   #blue {
     background-color: blue;
+    float: left;
+  }
+
+  #white {
+    background-color: #ffffff;
     float: left;
   }
   
@@ -96,4 +126,6 @@ body{
     background-color: white;
     color: black;  
   }
+  
+
   
