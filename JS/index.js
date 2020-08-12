@@ -44,14 +44,14 @@ var resetGame = function () {
     lastChance = true;
   }
   $("#mode").on("click");
-  $("#start").on("click");
+  $(".menuButton").on("click");
   resetAnswers();
 };
 
 var playerTurn = function () {
   //during the game we don't want the player to switch between strict and relaxed
   $("#mode").off("click");
-  $("#start").off("click");
+  //$(".menuButton").off("click");
 
   //winning condition
   if (rounds === 20) {
@@ -127,7 +127,6 @@ $(".menuButton").click(function () {
   }
   else {
     resetGame();
-    resetAnswers();
   }      
 });
 
