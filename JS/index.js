@@ -1,10 +1,7 @@
 var userAnswers = [];
 var SimonAnswers = [];
 var rounds = 0;
-//strict mode allows one  mistake per round. false if 'relaxed' mode
-var strict = true;
-//in strict mode, there is no last chance
-var lastChance = false;
+var interval;
 
 var addColor = function (arr) {
   var colorsArray = ["green", "red", "yellow", "blue"];
@@ -12,44 +9,73 @@ var addColor = function (arr) {
 };
 
 var flashLights = function (arr) {
+  
   var i = 0;
 
-  var interval = setInterval(function () {
+  interval = setInterval(function () {
+    
     $("#" + arr[i])
       .fadeTo("fast", 0)
       .fadeTo("fast", 1);
+    
     $("#sound-" + arr[i])[0].play();
+    
     i++;
-    if (i >= arr.length) {
+    
+    if (i >= (arr.length)) {
       clearInterval(interval);
     }
+
   }, 1000);
+  console.log(interval);
 };
 
-var resetSimonAnswers = function () {
-  SimonAnswers = [];
-};
+var increaseFontSize = function () {
+ var el = document.querySelectorAll(".menuButton");
+  for ( var i = 0; i < el.length; i ++ ) {
+      el[i].style.fontSize = "120px";
+  }
+}
+
+var decreaseFontSize = function () {
+var el = document.querySelectorAll(".menuButton");
+  for ( var i = 0; i < el.length; i ++ ) {
+      el[i].style.fontSize = "40px";
+  }
+}
 
 var updateRounds = function () {
   rounds++;
-  //$("#show-rounds").html(rounds);
   $(".menuButton").html(rounds);
 };
 
+//Start Game:
+$(".menuButton").click(function () {
+  if(rounds===0){
+    playerTurn();
+    increaseFontSize();
+  }
+  else {
+    resetGame();
+    decreaseFontSize();
+    $(".menuButton").html("RESET?");
+
+  }      
+});
+
 var resetGame = function () {
+
   rounds = 0;
-  $("#show-rounds").html(rounds);
+  clearInterval(interval);//
   userAnswers = [];
+  SimonAnswers = [];
+  playerTurn();
   
-  $(".menuButton").on("click");
-  resetSimonAnswers();
 };
 
 var playerTurn = function () {
-  //during the game we don't want the player to switch between strict and relaxed
-  $("#mode").off("click");
-  //$(".menuButton").off("click");
 
+  increaseFontSize();
   updateRounds();
   addColor(userAnswers);
   flashLights(userAnswers);
@@ -63,41 +89,30 @@ var playerTurn = function () {
       for (var i = 0; i < SimonAnswers.length; i++) {
         //correct answer
         if (JSON.stringify(userAnswers) === JSON.stringify(SimonAnswers)) {
-          resetSimonAnswers();
+          SimonAnswers = [];
           playerTurn();
           break;
-        }
+        }//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
 
         //wrong answer
         if (SimonAnswers[i] !== userAnswers[i]) {
-      
-            alert(
-              "WRONG! Press the center button to start over!"
-            );
-            resetGame();
-            break;
+            var el = document.querySelectorAll(".menuButton");
+            for ( var i = 0; i < el.length; i ++ ) {
+                el[i].style.fontSize = "40px";
+            }
+            $(".menuButton").html("Wrong!");
+            setTimeout(wrong, 1000);
           }
         }
       
     });
 };
 
-
-//Start Game:
-$(".menuButton").click(function () {
-  if(rounds===0){
-    playerTurn();
-    increaseNumFontSize();
-  }
-  else {
-    resetGame();
-  }      
-});
-
-
-var increaseNumFontSize = function () {
- var el = document.querySelectorAll(".menuButton");
-  for ( var i = 0; i < el.length; i ++ ) {
-      el[i].style.fontSize = "120px";
-  }
+var wrong = function () {
+  $(".menuButton").html("Start Over!");
+  setTimeout(resetGame, 1000);
 }
+
+
+
+
