@@ -1,5 +1,5 @@
-var computerMovements = [];
-var answers = [];
+var userAnswers = [];
+var SimonAnswers = [];
 var rounds = 0;
 //strict mode allows one  mistake per round. false if 'relaxed' mode
 var strict = true;
@@ -26,8 +26,8 @@ var flashLights = function (arr) {
   }, 1000);
 };
 
-var resetAnswers = function () {
-  answers = [];
+var resetSimonAnswers = function () {
+  SimonAnswers = [];
 };
 
 var updateRounds = function () {
@@ -39,13 +39,10 @@ var updateRounds = function () {
 var resetGame = function () {
   rounds = 0;
   $("#show-rounds").html(rounds);
-  computerMovements = [];
-  if (strict === false) {
-    lastChance = true;
-  }
-  $("#mode").on("click");
+  userAnswers = [];
+  
   $(".menuButton").on("click");
-  resetAnswers();
+  resetSimonAnswers();
 };
 
 var playerTurn = function () {
@@ -53,40 +50,27 @@ var playerTurn = function () {
   $("#mode").off("click");
   //$(".menuButton").off("click");
 
-  //winning condition
-  if (rounds === 20) {
-    resetGame();
-  }
-
   updateRounds();
-  addColor(computerMovements);
-  flashLights(computerMovements);
+  addColor(userAnswers);
+  flashLights(userAnswers);
 
   $(".button")
     .off("click")
     .on("click", function () {
       $("#sound-" + $(this).attr("id"))[0].play();
-      answers.push($(this).attr("id"));
+      SimonAnswers.push($(this).attr("id"));
 
-      for (var i = 0; i < answers.length; i++) {
+      for (var i = 0; i < SimonAnswers.length; i++) {
         //correct answer
-        if (JSON.stringify(computerMovements) === JSON.stringify(answers)) {
-          resetAnswers();
+        if (JSON.stringify(userAnswers) === JSON.stringify(SimonAnswers)) {
+          resetSimonAnswers();
           playerTurn();
           break;
         }
 
         //wrong answer
-        if (answers[i] !== computerMovements[i]) {
-          if (strict === false && lastChance === true) {
-            lastChance = false;
-            alert("You get one more chance...");
-            resetAnswers();
-            flashLights(computerMovements);
-          } else if (
-            answers[i] !== computerMovements[i] &&
-            lastChance === false
-          ) {
+        if (SimonAnswers[i] !== userAnswers[i]) {
+      
             alert(
               "WRONG! Press the center button to start over!"
             );
@@ -94,30 +78,10 @@ var playerTurn = function () {
             break;
           }
         }
-      }
+      
     });
 };
 
-$("#mode").click(function () {
-  switch (strict) {
-    case true:
-      strict = false;
-      lastChance = true;
-      $("#mode").html("Mode: Relaxed");
-      break;
-
-    case false:
-      strict = true;
-      lastChance = false;
-      $("#mode").html("Mode: Strict");
-      break;
-  }
-});
-
-/*$("#start").click(function () {
-  console.log("Started");
-  playerTurn();
-});*/
 
 //Start Game:
 $(".menuButton").click(function () {
