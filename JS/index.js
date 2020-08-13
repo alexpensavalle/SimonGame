@@ -32,7 +32,7 @@ var resetAnswers = function () {
 
 var updateRounds = function () {
   rounds++;
-  $("#show-rounds").html(rounds);
+  //$("#show-rounds").html(rounds);
   $(".menuButton").html(rounds);
 };
 
