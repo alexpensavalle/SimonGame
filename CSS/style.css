@@ -37,7 +37,7 @@ body{
     flex-direction: column;
     align-content: center;
     justify-content: center;
-    border-radius: 30%
+    border-radius: 35%
   }
 
   #menuContainer:hover{
@@ -47,7 +47,7 @@ body{
   .menuButton{
       width:fit-content(center);
       height:fit-content(center);
-      margin: 20px;
+      margin: 40px;
       height: auto;
       font-size: 40px;
       text-align:center;

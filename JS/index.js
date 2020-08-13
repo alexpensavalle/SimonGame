@@ -16,14 +16,14 @@ var flashLights = function (arr) {
 
   var interval = setInterval(function () {
     $("#" + arr[i])
-      .fadeTo("slow", 0)
-      .fadeTo("slow", 1);
+      .fadeTo("fast", 0)
+      .fadeTo("fast", 1);
     $("#sound-" + arr[i])[0].play();
     i++;
     if (i >= arr.length) {
       clearInterval(interval);
     }
-  }, 1500);
+  }, 1000);
 };
 
 var resetAnswers = function () {
@@ -88,7 +88,7 @@ var playerTurn = function () {
             lastChance === false
           ) {
             alert(
-              "That was it...start again, if you feel like a challenge...!"
+              "WRONG! Press the center button to start over!"
             );
             resetGame();
             break;
