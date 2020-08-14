@@ -107,17 +107,10 @@ var playerTurn = function () {
             UserAnswers = [];//reset user array, since next round user will have to enter ALL the elements again
             playerTurn();
             break;
-<<<<<<< HEAD
-          } //See README.md for more info on JSON.stringify
-
-          //wrong answer
-          if (SimonAnswers[i] !== userAnswers[i]) {
-=======
           }//see README for more info on JSON.stringify
           
           //if wrong answer
           if (UserAnswers[i] !== SimonAnswers[i]) {//only need to check if the last array element doesn't match
->>>>>>> master
             
             decreaseFontSize();
 
