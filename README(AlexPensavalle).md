@@ -25,3 +25,11 @@ Lots of additional info about the original game can be found here: https://en.wi
         - let ex = [1,2,3,4,5,6,7,8,9,0];
         - console.log(JSON.stringify(ex));
         - expected output: > "[1,2,3,4,5,6,7,8,9,0]"
+
+# Next Steps:
+  - Add "strict" and "no-strict' mode
+  - Compatibility with iPhone
+  - Make game speed up as you play
+
+
+[Click Here to Play!](https://alexpensavalle.github.io/SimonGame/)
