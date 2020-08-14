@@ -101,7 +101,7 @@ var playerTurn = function () {
             SimonAnswers = [];
             playerTurn();
             break;
-          } //developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+          } //See README.md for more info on JSON.stringify
 
           //wrong answer
           if (SimonAnswers[i] !== userAnswers[i]) {
