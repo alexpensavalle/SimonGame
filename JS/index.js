@@ -10,76 +10,67 @@ var addColor = function (arr) {
 };
 
 var flashLights = function (arr) {
-  
   var i = 0;
 
   interval = setInterval(function () {
-  
-        $("#" + arr[i])
-          .fadeTo("fast", 0)
-          .fadeTo("fast", 1);
+    $("#" + arr[i])
+      .fadeTo("fast", 0)
+      .fadeTo("fast", 1);
 
-        
-        $("#sound-" + arr[i])[0].play();
+    $("#sound-" + arr[i])[0].play();
 
-        i++;
+    i++;
 
-        if (i >= (arr.length)) {
-          clearInterval(interval);
-        }
-    
-
+    if (i >= arr.length) {
+      clearInterval(interval);
+    }
   }, 1000);
 
   console.log(arr[i]);
 };
 
 var increaseFontSize = function () {
- var el = document.querySelectorAll(".menuButton");
-  for ( var i = 0; i < el.length; i ++ ) {
-      el[i].style.fontSize = "120px";
+  var el = document.querySelectorAll(".menuButton");
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.fontSize = "120px";
   }
-}
+};
 
 var decreaseFontSize = function () {
   var el = document.querySelectorAll(".menuButton");
-    for ( var i = 0; i < el.length; i ++ ) {
-        el[i].style.fontSize = "40px";
-    }
-}
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.fontSize = "40px";
+  }
+};
 
 var youWin = function () {
-    decreaseFontSize();
-    $(".menuButton").html("You Win!");
-    userAnswers = [];
-    SimonAnswers = [];
-    clearInterval(interval);
-    setTimeout(resetGame, 4000);
-    return true;
-}
+  decreaseFontSize();
+  $(".menuButton").html("You Win!");
+  userAnswers = [];
+  SimonAnswers = [];
+  clearInterval(interval);
+  setTimeout(resetGame, 4000);
+  return true;
+};
 
 var updateRounds = function () {
-          
-    if(rounds === fullGame) {
-      youWin();
-      console.log(youWin());
-    }
-    else {
-      rounds++;
-      $(".menuButton").html(rounds);
-    }
-
+  if (rounds === fullGame) {
+    youWin();
+    console.log(youWin());
+  } else {
+    rounds++;
+    $(".menuButton").html(rounds);
+  }
 };
 
 //Start Game:
 $(".menuButton").click(function () {
-  if(rounds===0){
+  if (rounds === 0) {
     playerTurn();
     increaseFontSize();
-  }
-  else {
+  } else {
     resetGame();
-  }      
+  }
 });
 
 var resetGame = function () {
@@ -92,59 +83,44 @@ var resetGame = function () {
 };
 
 var playerTurn = function () {
+  if (rounds != fullGame) {
+    updateRounds();
 
-  if(rounds != fullGame){
-      updateRounds();
-    
-      addColor(userAnswers);
-      flashLights(userAnswers);
+    addColor(userAnswers);
+    flashLights(userAnswers);
 
-      $(".button")
-        .off("click")
-        .on("click", function () {
-          $("#sound-" + $(this).attr("id"))[0].play();
-          SimonAnswers.push($(this).attr("id"));
+    $(".button")
+      .off("click")
+      .on("click", function () {
+        $("#sound-" + $(this).attr("id"))[0].play();
+        SimonAnswers.push($(this).attr("id"));
 
-          for (var i = 0; i < SimonAnswers.length; i++) {
-            //correct answer
-            if (JSON.stringify(userAnswers) === JSON.stringify(SimonAnswers)) {
-              SimonAnswers = [];
-              playerTurn();
-              break;
-            }//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+        for (var i = 0; i < SimonAnswers.length; i++) {
+          //correct answer
+          if (JSON.stringify(userAnswers) === JSON.stringify(SimonAnswers)) {
+            SimonAnswers = [];
+            playerTurn();
+            break;
+          } //developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
 
-            //wrong answer
-            if (SimonAnswers[i] !== userAnswers[i]) {
+          //wrong answer
+          if (SimonAnswers[i] !== userAnswers[i]) {
+            var el = document.querySelectorAll(".menuButton");
+            for (var i = 0; i < el.length; i++) el[i].style.fontSize = "40px";
 
-                var el = document.querySelectorAll(".menuButton");
-                for ( var i = 0; i < el.length; i ++ ) 
-                    el[i].style.fontSize = "40px";
+            $(".menuButton").html("Wrong!");
 
-
-                $(".menuButton").html("Wrong!");
-
-                setTimeout(
-                  wrong = function () {
-                    $(".menuButton").html("Start Over!");
-                    setTimeout(
-                      resetGame, 1000);
-                  }, 
-                  1000);
-            }
-         }   
+            setTimeout(
+              (wrong = function () {
+                $(".menuButton").html("Start Over!");
+                setTimeout(resetGame, 1000);
+              }),
+              1000
+            );
+          }
+        }
       });
-
-  }
-  else{
-
+  } else {
     youWin();
-    
   }
-
 };
-
-
-
-
-
-
