@@ -1,28 +1,27 @@
 # SimonGame
 GA SimonGame Project
 
+# A 2020 take on the popular Milton Bradley (R) game, originally created in 1973 by Ralph H. Baer and Howard J. Morrison.
+Lots of additional info about the original game can be found here: https://en.wikipedia.org/wiki/Simon_(game)
+
 ![Basic Wireframe](https://github.com/alexpensavalle/SimonGame/blob/master/IMG-7963.jpg)
 
-PseudoCode: General Gameplay
+![Current Product Screenshot](https://i.imgur.com/UBm30vS.png)
 
-1.  User presses center circle "START"
-2.  center circle changes to display "1" (aka, level 1, or only one color to remember)
-3.  a random number generator randomly picks a color, and pushes it to a global array (aka "simonArray")
-4.  model(?) iterates through simonArray
-    - for each element (color) in simonArray, run a function which takes in color as a parameter and displays (lights up) appropriate color button on screen for a set period of time (short), and plays a sound while lit, in the VIEW
-5. users turn! 
-  - set up event button listeners corresponding to each color
-  - start timer
-6. while timer < 3000ms: (if timer runs out, run function "gameOver();")
-  - wait for user to press button within the , and push that color to global "userArray" 
-    - once userArray.length = simonArray.length:
-      - we now know user has entered a sequence (whether correct or incorrect) that is same length as simons, so:
-      - we can now check if userArray contains the same color sequence elements as simon
-        - if yes/true:
-          -stop timer
-          - display eiter "Nice", "Woohoo", "YES"....randomly select phrase out of a predefined array on center circle
-          - increment/move onto level 2, display "2" on center circle
-          - go back to step 3
-        - if no/false:
-          - run function "gameOver();"
+# How to Play:
+  - Press the start button to begin!
+  - The center button will begin displaying your current "level" aka how many colors you have to remember!
+  - Press on the level number at anytime to restart the game.
+  - The game is always on 'strict mode' -- aka, if you mess up, you start over!!
+  - Simon says: "Have fun!"
 
+# Technologies Utilized:
+  - HTML
+  - CSS
+  - "Vanilla" aka plain JS
+  - JQuery
+  - JSON.stringify
+    - developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+        - let ex = [1,2,3,4,5,6,7,8,9,0];
+        - console.log(JSON.stringify(ex));
+        - expected output: > "[1,2,3,4,5,6,7,8,9,0]"
