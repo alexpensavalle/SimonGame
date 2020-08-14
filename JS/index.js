@@ -105,8 +105,8 @@ var playerTurn = function () {
 
           //wrong answer
           if (SimonAnswers[i] !== userAnswers[i]) {
-            var el = document.querySelectorAll(".menuButton");
-            for (var i = 0; i < el.length; i++) el[i].style.fontSize = "40px";
+            
+            decreaseFontSize();
 
             $(".menuButton").html("Wrong!");
 
